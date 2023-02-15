@@ -5,9 +5,7 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const allCategories = await Category.findAll({
-      // include: { all: true, nested: true },
       include: [{ model: Product }],
-      // include: 'goods',
     });
     res.status(200).json(allCategories);
   } catch (err) {
@@ -23,7 +21,7 @@ router.get('/:id', async (req, res) => {
     });
 
     if (!aCategory) {
-      res.status(404).json({ message: `No Category found with the id=${req.params.id}` });
+      res.status(404).json({ message: `No Category found with id=${req.params.id}` });
       return;
     }
 
@@ -53,7 +51,7 @@ router.put('/:id', async (req, res) => {
     });
 
     if (!updatedCategory) {
-      res.status(404).json({ message: `No Category found with the id=${req.params.id}` });
+      res.status(404).json({ message: `No Category found with id=${req.params.id}` });
       return;
     }
 
@@ -73,7 +71,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!delCategory) {
-      res.status(404).json({ message: `No Category found with the id=${req.params.id}` });
+      res.status(404).json({ message: `No Category found with id=${req.params.id}` });
       return;
     }
 
